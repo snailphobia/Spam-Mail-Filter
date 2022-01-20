@@ -4,11 +4,9 @@ int8_t parse_word(char *bigword, char *smallword)
 {
 	int len1 = strlen(bigword), len2 = strlen(smallword);
 	int counter = 0;
-	for (char *it = bigword; it < bigword + len1; it++) {
-		if (compare_words(it, smallword)) {
+	for (char *it = bigword; it < bigword + len1 - len2 + 1; it++) {
+		if (compare_words(it, smallword))
 			counter++;
-			break;
-		}
 	}
 	return counter;
 }

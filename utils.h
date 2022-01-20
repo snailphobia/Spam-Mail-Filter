@@ -2,7 +2,6 @@
 #define RED "\e[31m"
 #define GREEN "\e[32m"
 #define DEF "\e[0m"
-#define PREC_MULT 10000000
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -16,7 +15,7 @@ typedef struct {
 	int score;
 } SPAMMERS;
 
-char **load_keywords(int *n);
+char **load_keywords(int *n, int *init_n);
 FILE *load_mail(char *name);
 void pass_to_body(FILE *mail);
 void pass_to_email(FILE *mail);
@@ -28,4 +27,5 @@ double stdev_calc(int **keywords_app, int N, int word_n);
 int load_spammers(SPAMMERS *sp);
 int mail_trial(FILE *mail);
 int score_calc(FILE *mail, int **keywordapp, SPAMMERS *sp,
-			   char *email, int s_ind, int i, int N, double gamma);
+			   char *email, double *stdev,
+			   int s_ind, int i, int N, double gamma);

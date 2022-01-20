@@ -1,28 +1,45 @@
-jaghfruyg freeth
-ekwjhkj
-wrb
-wrb
-brtijehob
-n
-etn
-brtijehobeyn
-ety
-ne
+pentru task1:
+solutia este destul de straight-forward, am citit lista de keywords
+(apropo, pentru task2 am adaugat in aceeasi lista mai multe cuvinte, pe care le-am afisat fara sa vreau, dar aparent scriptul nu
+a depunctat asta, le-am lasat asa)
+dupa care am luat fiecare mail din director (citirea am facut-o in ordinea logica a numerelor si nu cea lexicografica data de
+readdir())
+si am citit cuvant cu cuvant datele, verificand pentru fiecare keyword daca se regaseste in vreun cuvant, am memorat aparitiile
+intr-o matrice restul este practic calculul matematic
 
-ny
-etyn
-etnyn
-tju
-netu
-uy
-etjn
-y
-je
-rh
-bef
-h
-tjuu
-rnj
-neer
-hg
-//todo
+pentru task2:
+am reluat lista de mail uri pentru a calcula valorile necesare pentru criterii cu aceeasi metoda
+am modificat putin criteriile, in sensul ca numerele initiale erau prea hit-or-miss;
+relevanta aparitiei unui keyword ar trebui sa scada odata cu cresterea numarului de aparitii al acestuia intr-un mail
+(in cazul in care lista de cuvinte contine acel cuvant si el este folosit intr-un alt context trebuie redusa sansa de a considera
+acel mail ca fiind spam doar din cauza acelui cuvant)
+de asemenea, am marit pragul la 45 de puncte odata cu marirea proportionala a celorlalte doua punctaje pentru a scadea sansa de a
+marca acel mail ca spam pentru folosirea accidentala a unui keyword
+pentru raportul dintre lungimea body-ului actual si lungimea medie a unui body am preferat lungimea cuvintelor in loc;
+in functie de subiectul mail-ului cuvintele pot fi in mai lungi sau mai scurte (abrevieri, cuvinte complicate etc) decat in medie
+numarul de cuvinte in schimb e mai precis
+literele capitalizate: am preferat o valoare intermediara intre acel 0-30 precizat (cu mai mult accent pe fisierele care contin
+zeci de cuvinte scrise in caps dar care nu depasesc jumatate din numarul total de litere)
+de la 1/10 din litere scrise in caps in sus, adaug la scor 1/3 * numarul de cuvinte full caps
+in plus, formula din functie duce la depunctarea proportionala cu raportul dintre numarul de litere in caps fata de total, ofera
+precizie mai buna
+pentru lista de spammeri a fost destul de ciudat, trebuiau sarite un numar necunoscut de cuvinte (numele expeditorului, care
+putea si sa nu existe?), am pastrat formula din enunt, marita proportional pentru pragul de 45 de puncte
+
+de asemenea, pentru scorul asociat keywords, am ales sa iau acel raport dintre lungimi in logaritm (aproximarea clasica pentru
+valori apropiate de 0, x ~ log2 (x + 1)), deoarece erau destul de multe mailuri scurte ca lungime care erau penalizate 
+exagerat chiar si pentru un singur keyword (atunci cand raportul dintre lungimi trecea de 5 de exemplu, un singur keyword era de
+ajuns) in forma logaritmata, e destul de greu sa se ajunga la astfel de cazuri, log2 din 10 fiind putin peste 4 de exemplu
+(10 este un caz destul de exagerat)
+cel mai important, acest "capping" permite folosirea unei liste mai mari de keywords cu o marja de eroare similara, fiind un
+avantaj clar dpdv probabilistic
+
+am ramas surprins sa vad ca adresele web dubioase nu erau un trigger bun pentru spam, initial am vrut sa pun "http:"
+(nefiind encrypted) ca si keyword (abia dupa m-am uitat la datele mailurilor :))
+
+de asemenea mai exista acele foot-ere de la yahoo groups care contin keywords (nu le-am mai evitat pentru ca am vazut ca sunt
+numarate la task1)
+
+cam toate cuvintele adaugate in keyword list sunt din contextul financiar, fiind cel mai raspandit tip de spam
+cuvinte alternative incercate: benefit, www., http:, subscrib, 
+F1 local 0.952381
